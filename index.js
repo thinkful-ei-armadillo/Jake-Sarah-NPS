@@ -16,6 +16,7 @@ function getSearchResults(){
     .catch(error => alert ('Search Results is not working'));
 }
 
+
 function displayResults(){
 //will get an html string
   const showResults= [];
@@ -27,11 +28,13 @@ Here is your description:  <br>
 URL: </p>`);
 }
 
+
 function parksQuery(states, limit){
   if(limit > 50){
     throw new Error('limit cannot exceed 50 states.');
   }
   let state = states.join('&');
+
   console.log(state);
 }
 
@@ -49,6 +52,7 @@ function watchForm(){
   });
 
 }
+
 
 
 function main(){
