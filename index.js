@@ -1,13 +1,12 @@
 'use strict';
 
-TEST
 
 const API_KEY= 'WSJxSY1ToMGvG5DXikXrgsHbZEPXPGa2YrovqmVf';
 const BASE_URL= 'http://api.nps.gov/api/v1';
 
 let results = {
   searchResults: []};
-----------test123
+
 
 function getSearchResults(){
   fetch(api.nps.gov/api/v1/parks)
