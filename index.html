@@ -7,7 +7,8 @@
   <title>National Parks Search Client</title>
 </head>
 <body>
-  <form>
+  <form class="state-search">
+  <label value="state-search">Drag to choose as many states as you like</label><br>
   <select id="state" size="10" multiple>
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
@@ -60,8 +61,16 @@
     <option value="WV">West Virginia</option>
     <option value="WI">Wisconsin</option>
     <option value="WY">Wyoming</option>
-  </select>				
+  </select><br>				
+  <label class="results" value="results">Result Limit</label>
+  <input type="number" class="result-limit" value="10" placeholder="10">
+  <input type="submit" value="submit">
 </form>
+<div class="search-results">
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
 <script src="index.js"></script>
 </body>
 </html>
