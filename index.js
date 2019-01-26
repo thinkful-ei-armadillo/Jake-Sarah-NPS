@@ -2,22 +2,11 @@
 
 
 const API_KEY= 'WSJxSY1ToMGvG5DXikXrgsHbZEPXPGa2YrovqmVf';
-const BASE_URL= 'http://api.nps.gov/api/v1';
-
-let results = {
-  searchResults: []};
+const BASE_URL= 'http://api.nps.gov/api/v1/parks';//was missing /parks causing the query to be invalid
 
 
-function getSearchResults(){
-  fetch(api.nps.gov/api/v1/parks)
-    .then(response => response.json())
-    .then(responseJson => displayResults(responseJson))
-   
-    .catch(error => alert ('Search Results is not working'));
-}
 
-
-function displayResults(){
+/*function displayResults(){
 //will get an html string
   const showResults= [];
   for(let i =0; i < responseJson.message.length; i++){
@@ -26,38 +15,51 @@ function displayResults(){
   $('.search-results').html(`<p>Here is your park: ${showResults} <br>
 Here is your description:  <br>
 URL: </p>`);
+}*/
+
+
+
+function parksQuery(stateCode, limit){
+  const queryInfo = {
+    stateCode,
+    limit
+  };
+  const queryString = formatQuery(queryInfo);
+  //"A comma delimited list of 2 character state codes." - We can have commas in our search over multiple states.
+  const completedURL = `${BASE_URL}?${queryString}&api_key=WSJxSY1ToMGvG5DXikXrgsHbZEPXPGa2YrovqmVf`;
+  console.log(queryString, completedURL);
+  //joined two functions to gain access to the completedURL for the fetch.    
+  fetch(completedURL)
+    .then(response => response.json())
+    //display results is currently commented out
+    .then(responseJson => displayResults(responseJson))  
+    .catch(error => alert ('Search Results are not working'));
+}
+
+//format the query to valid query in the url
+function formatQuery (queryInfo) {
+  const query = 
+    Object.keys(queryInfo).map(key => `${key}=${queryInfo[key]}`);
+  return query.join('&');
 }
 
 
-function parksQuery(states, limit){
-  if(limit > 50){
-    throw new Error('limit cannot exceed 50 states.');
-  }
-  let state = states.join('&');
-
-  console.log(state);
-}
-
-
-
+//event handler - complete
 function watchForm(){  
   $('.state-search').submit(function(event){
     console.log('watchForm is working');
     event.preventDefault();
-    const searchVal= $('#state').val();
-    const searchLimit = $('.result-limit').val();
-    parksQuery(searchVal, searchLimit);
-    console.log(searchVal, searchLimit);
+    const stateCode= $('#state').val();
+    const limit = $('.result-limit').val();
+    parksQuery(stateCode, limit);
+    console.log(stateCode, limit);
     
   });
 
 }
 
-
-
 function main(){
   watchForm();
-  getSearchResults();
-  parksQuery();
+
 }
 $(main);
