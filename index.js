@@ -6,23 +6,26 @@ const BASE_URL= 'http://api.nps.gov/api/v1/parks';//was missing /parks causing t
 
 
 
-// function displayResults(){
-// //will get an html string
-//   const showResults= [];
-//   for(let i =0; i < responseJson.message.length; i++){
-//         showResults.push();
-//   }
-//   //added a <ul> to our html page so we could have each result for each state be in a list
-//   // we need each park, descrip, and URL to be from an index in the array we created.
-//   //maybe it should be an obj?
-//   $('.search-results').html(`<li>
-//   <p>Park: ${showResults} <br>
-//     Description:  <br>
-//     URL: 
-//     </p>
-//     </li>`);
-// console.log(`here is showResults: `, showResults);
-// }
+function displayResults(responseJson){
+//will get an html string
+  const showResults= [];
+  for(let i =0; i < responseJson.data.length; i++){
+    showResults.push(`<li>
+          <p>State:${responseJson.data[i].states}
+          <br>
+          Park:${responseJson.data[i].fullName}  
+          <br>
+          Description: ${responseJson.data[i].description} <br>
+          URL: ${responseJson.data[i].url}
+          </p>
+          </li>`);
+  }
+  //added a <ul> to our html page so we could have each result for each state be in a list
+  // we need each park, descrip, and URL to be from an index in the array we created.
+  //maybe it should be an obj?
+  $('.search-results').html(showResults);
+  //console.log('here is showResults: ', showResults);
+}
 
 
 
@@ -39,7 +42,7 @@ function parksQuery(stateCode, limit){
   fetch(completedURL)
     .then(response => response.json())
     //display results is currently commented out
-    .then(responseJson => console.log(responseJson))  
+    .then(responseJson => displayResults(responseJson))  
     .catch(error => alert ('Search Results are not working'));
 }
 
