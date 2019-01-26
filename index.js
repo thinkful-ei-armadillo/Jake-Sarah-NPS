@@ -11,7 +11,7 @@ function displayResults(responseJson){
   const showResults= [];
   for(let i =0; i < responseJson.data.length; i++){
     showResults.push(`<li>
-          <p>State:${responseJson.data[i].states}
+          <p>State: ${responseJson.data[i].states}
           <br>
           Park:${responseJson.data[i].fullName}  
           <br>

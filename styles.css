@@ -1,0 +1,19 @@
+body{
+    background-color: #ffffff;
+    margin: 0 auto;
+    display: block;
+    font-family: 'Raleway', sans-serif;
+    
+}
+
+.container{
+    padding: 20px;
+    width: 100%;
+    
+}
+
+.search-results > li {
+    border: 1px solid black;
+    padding: 10px;
+    margin: 15px;
+}
