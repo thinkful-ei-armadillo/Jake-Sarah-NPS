@@ -6,16 +6,23 @@ const BASE_URL= 'http://api.nps.gov/api/v1/parks';//was missing /parks causing t
 
 
 
-/*function displayResults(){
-//will get an html string
-  const showResults= [];
-  for(let i =0; i < responseJson.message.length; i++){
-    showResults.push();
-  }
-  $('.search-results').html(`<p>Here is your park: ${showResults} <br>
-Here is your description:  <br>
-URL: </p>`);
-}*/
+// function displayResults(){
+// //will get an html string
+//   const showResults= [];
+//   for(let i =0; i < responseJson.message.length; i++){
+//         showResults.push();
+//   }
+//   //added a <ul> to our html page so we could have each result for each state be in a list
+//   // we need each park, descrip, and URL to be from an index in the array we created.
+//   //maybe it should be an obj?
+//   $('.search-results').html(`<li>
+//   <p>Park: ${showResults} <br>
+//     Description:  <br>
+//     URL: 
+//     </p>
+//     </li>`);
+// console.log(`here is showResults: `, showResults);
+// }
 
 
 
@@ -40,7 +47,10 @@ function parksQuery(stateCode, limit){
 function formatQuery (queryInfo) {
   const query = 
     Object.keys(queryInfo).map(key => `${key}=${queryInfo[key]}`);
-  return query.join('&');
+    console.log(query);
+     query.join('&');
+
+  
 }
 
 
