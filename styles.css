@@ -12,8 +12,11 @@ body{
     
 }
 
-.search-results > li {
+.search-results li {
     border: 1px solid black;
     padding: 10px;
     margin: 15px;
+}
+.search-results ul {
+    list-style: none;
 }

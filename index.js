@@ -23,7 +23,7 @@ function displayResults(responseJson){
   //added a <ul> to our html page so we could have each result for each state be in a list
   // we need each park, descrip, and URL to be from an index in the array we created.
   //maybe it should be an obj?
-  $('.search-results').html(showResults);
+  $('.search-results ul').html(showResults);
   //console.log('here is showResults: ', showResults);
 }
 
@@ -36,10 +36,14 @@ function parksQuery(stateCode, limit){
   };
   const queryString = formatQuery(queryInfo);
   //"A comma delimited list of 2 character state codes." - We can have commas in our search over multiple states.
-  const completedURL = `${BASE_URL}?${queryString}&api_key=WSJxSY1ToMGvG5DXikXrgsHbZEPXPGa2YrovqmVf`;
+  const completedURL = `${BASE_URL}?${queryString}&api_key=${API_KEY}`;
   //console.log('1', queryInfo, '2', queryString, '3', completedURL);
   //joined two functions to gain access to the completedURL for the fetch.    
-  fetch(completedURL)
+  fetch(completedURL, {
+    // headers : {
+    //   'X-Api-Key': API_KEY
+    // }
+  })
     .then(response => response.json())
     //display results is currently commented out
     .then(responseJson => displayResults(responseJson))  
@@ -61,8 +65,9 @@ function watchForm(){
   $('.state-search').submit(function(event){
     event.preventDefault();
     const stateCode= $('#state').val();
-    const limit = $('.result-limit').val();
+    const limit = $('.result-limit').val()-1;
     parksQuery(stateCode, limit);
+    $().clear()
     
   });
 
